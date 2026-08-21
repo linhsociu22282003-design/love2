@@ -102,8 +102,8 @@
 
   <div class="card">
     <div class="heart-icon">💖</div>
-    <h1 id="title">Đang Chuẩn Bị Món Quà...</h1>
-    <p id="desc">Món quà đầu tiên sẽ tự động mở sau giây lát ✨</p>
+    <h1 id="title">Đợi xíuu...</h1>
+    <p id="desc">Cái cute đầu tiên nè ✨</p>
     
     <!-- Đếm ngược 5 giây trước Link 1 -->
     <div class="timer-box" id="timer-container">
@@ -115,7 +115,7 @@
     <!-- Sticker trái tim xuất hiện sau khi mở Link 1 -->
     <div class="heart-sticker-wrapper" id="sticker-box" onclick="goToLink2()">
       <div class="heart-sticker-btn">
-        💖 Bấm Vào Đây Để Mở Bất Ngờ Tiếp Theo 💖
+        Bấm nào🥊
       </div>
     </div>
   </div>
@@ -123,7 +123,7 @@
   <script>
     // Điền 2 đường dẫn của bạn vào đây
     const link1 = "https://v.dlove.vn/index.html?49a82d42764d748f";
-    const link2 = "https://example.com"; // Thay bằng link thứ 2 của bạn
+    const link2 = "https://lovegiftraintext.netlify.app/?id=ABKNjsE8dDkGoPlAyY4x"; // Thay bằng link thứ 2 của bạn
 
     let timeRemaining = 5; // Đếm ngược 5s trước khi vào Link 1
 
@@ -142,8 +142,8 @@
 
         // 2. Thay đổi giao diện hiện Sticker trái tim chuyển sang Link 2
         document.getElementById('timer-container').style.display = "none";
-        document.getElementById('title').textContent = "Món Quà Thứ 2 Đã Sẵn Sàng! 🎁";
-        document.getElementById('desc').textContent = "Bấm vào trái tim nhấp nháy bên dưới để mở tiếp nhé 💕";
+        document.getElementById('title').textContent = "Cái cute thứ 2 nè 🎁";
+        document.getElementById('desc').textContent = "Bấm vào trái tim đi hachimiii 💕";
         document.getElementById('sticker-box').style.display = "block";
       }
     }, 1000);
