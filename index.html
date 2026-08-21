@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gửi Ngàn Yêu Thương 💕</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #d63384;
+      text-align: center;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 40px 30px;
+      border-radius: 25px;
+      box-shadow: 0 10px 30px rgba(214, 51, 132, 0.2);
+      max-width: 380px;
+      width: 85%;
+      border: 3px solid #ffb6c1;
+    }
+
+    .heart-icon {
+      font-size: 55px;
+      animation: pulse 1.2s infinite;
+      margin-bottom: 10px;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.15); }
+      100% { transform: scale(1); }
+    }
+
+    h1 {
+      font-size: 22px;
+      margin-bottom: 10px;
+      color: #ff4d6d;
+    }
+
+    p {
+      font-size: 15px;
+      color: #666;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    .timer-box {
+      background: #fff0f5;
+      border-radius: 15px;
+      padding: 15px;
+      margin-bottom: 20px;
+      border: 1px dashed #ff4d6d;
+    }
+
+    .countdown {
+      font-size: 38px;
+      font-weight: bold;
+      color: #ff4d6d;
+    }
+
+    /* Sticker Trái Tim Nhấp Nháy */
+    .heart-sticker-wrapper {
+      display: none;
+      margin-top: 15px;
+      cursor: pointer;
+      animation: floatBeat 1.2s infinite ease-in-out;
+    }
+
+    .heart-sticker-btn {
+      background: linear-gradient(135deg, #ff4d6d, #ff758f);
+      color: white;
+      font-size: 18px;
+      padding: 16px 28px;
+      border-radius: 50px;
+      box-shadow: 0 8px 25px rgba(255, 77, 109, 0.5);
+      border: 3px solid #fff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    @keyframes floatBeat {
+      0% { transform: translateY(0px) scale(1); }
+      50% { transform: translateY(-6px) scale(1.08); }
+      100% { transform: translateY(0px) scale(1); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="heart-icon">💖</div>
+    <h1 id="title">Đang Chuẩn Bị Món Quà...</h1>
+    <p id="desc">Món quà đầu tiên sẽ tự động mở sau giây lát ✨</p>
+    
+    <!-- Đếm ngược 5 giây trước Link 1 -->
+    <div class="timer-box" id="timer-container">
+      <div style="font-size: 13px; color: #888;">Tự động mở món quà 1 sau</div>
+      <div class="countdown" id="timer">5</div>
+      <div style="font-size: 13px; color: #888;">giây</div>
+    </div>
+
+    <!-- Sticker trái tim xuất hiện sau khi mở Link 1 -->
+    <div class="heart-sticker-wrapper" id="sticker-box" onclick="goToLink2()">
+      <div class="heart-sticker-btn">
+        💖 Bấm Vào Đây Để Mở Bất Ngờ Tiếp Theo 💖
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Điền 2 đường dẫn của bạn vào đây
+    const link1 = "https://v.dlove.vn/index.html?49a82d42764d748f";
+    const link2 = "https://example.com"; // Thay bằng link thứ 2 của bạn
+
+    let timeRemaining = 5; // Đếm ngược 5s trước khi vào Link 1
+
+    const timerElement = document.getElementById('timer');
+
+    // Tự động đếm ngược 5s khi vừa vào trang
+    const countdown = setInterval(() => {
+      timeRemaining--;
+      timerElement.textContent = timeRemaining;
+
+      if (timeRemaining <= 0) {
+        clearInterval(countdown);
+        
+        // 1. Mở Link 1 sang tab mới (hoặc trang mới)
+        window.open(link1, '_blank');
+
+        // 2. Thay đổi giao diện hiện Sticker trái tim chuyển sang Link 2
+        document.getElementById('timer-container').style.display = "none";
+        document.getElementById('title').textContent = "Món Quà Thứ 2 Đã Sẵn Sàng! 🎁";
+        document.getElementById('desc').textContent = "Bấm vào trái tim nhấp nháy bên dưới để mở tiếp nhé 💕";
+        document.getElementById('sticker-box').style.display = "block";
+      }
+    }, 1000);
+
+    function goToLink2() {
+      window.location.href = link2;
+    }
+  </script>
+
+</body>
+</html>
