@@ -54,6 +54,7 @@
     }
 
     .timer-box {
+      display: none;
       background: #fff0f5;
       border-radius: 15px;
       padding: 15px;
@@ -67,6 +68,21 @@
       color: #ff4d6d;
     }
 
+    .btn {
+      display: inline-block;
+      width: 85%;
+      padding: 14px 0;
+      background: #ff4d6d;
+      color: white;
+      text-decoration: none;
+      border-radius: 25px;
+      font-weight: bold;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(255, 77, 109, 0.4);
+    }
+
     /* Sticker Trái Tim Nhấp Nháy */
     .heart-sticker-wrapper {
       display: none;
@@ -78,8 +94,8 @@
     .heart-sticker-btn {
       background: linear-gradient(135deg, #ff4d6d, #ff758f);
       color: white;
-      font-size: 18px;
-      padding: 16px 28px;
+      font-size: 17px;
+      padding: 16px 24px;
       border-radius: 50px;
       box-shadow: 0 8px 25px rgba(255, 77, 109, 0.5);
       border: 3px solid #fff;
@@ -102,51 +118,60 @@
 
   <div class="card">
     <div class="heart-icon">💖</div>
-    <h1 id="title">Đợi xíuu...</h1>
-    <p id="desc">Cái cute đầu tiên nè ✨</p>
+    <h1 id="title">Hi chồng!</h1>
+    <p id="desc">Chạm vào nó đi hachimii 🤣✨</p>
     
-    <!-- Đếm ngược 5 giây trước Link 1 -->
+    <!-- Nút mở Link 1 -->
+    <button id="main-btn" class="btn" onclick="openLink1()">Cái cute đầu tiên nè 💕</button>
+
+    <!-- Đếm ngược 5 giây -->
     <div class="timer-box" id="timer-container">
-      <div style="font-size: 13px; color: #888;">Tự động mở món quà 1 sau</div>
+      <div style="font-size: 13px; color: #888;">Cái cute thứ 2 sẽ mở trong</div>
       <div class="countdown" id="timer">5</div>
       <div style="font-size: 13px; color: #888;">giây</div>
     </div>
 
-    <!-- Sticker trái tim xuất hiện sau khi mở Link 1 -->
+    <!-- Sticker trái tim mở Link 2 -->
     <div class="heart-sticker-wrapper" id="sticker-box" onclick="goToLink2()">
       <div class="heart-sticker-btn">
-        Bấm nào🥊
+         Bấm nào 🥊
       </div>
     </div>
   </div>
 
   <script>
-    // Điền 2 đường dẫn của bạn vào đây
+    // ĐIỀN 2 ĐƯỜNG DẪN CỦA BẠN VÀO ĐÂY
     const link1 = "https://v.dlove.vn/index.html?49a82d42764d748f";
-    const link2 = "https://lovegiftraintext.netlify.app/?id=ABKNjsE8dDkGoPlAyY4x"; // Thay bằng link thứ 2 của bạn
+    const link2 = "https://example.com"; // Thay bằng link thứ 2 thực tế
 
-    let timeRemaining = 5; // Đếm ngược 5s trước khi vào Link 1
+    let timeRemaining = 5;
 
-    const timerElement = document.getElementById('timer');
+    function openLink1() {
+      // 1. Mở Link 1 sang tab mới (Người dùng chủ động bấm nên không bị chặn)
+      window.open(link1, '_blank');
 
-    // Tự động đếm ngược 5s khi vừa vào trang
-    const countdown = setInterval(() => {
-      timeRemaining--;
-      timerElement.textContent = timeRemaining;
+      // 2. Chuyển giao diện sang đếm ngược 5s
+      document.getElementById('main-btn').style.display = "none";
+      document.getElementById('title').textContent = "Đang Chuẩn Bị Món Quà Thứ 2...";
+      document.getElementById('desc').textContent = "Chờ chút xíu để nhận tiếp bất ngờ nhé!";
+      document.getElementById('timer-container').style.display = "block";
 
-      if (timeRemaining <= 0) {
-        clearInterval(countdown);
-        
-        // 1. Mở Link 1 sang tab mới (hoặc trang mới)
-        window.open(link1, '_blank');
+      // 3. Chạy đếm ngược
+      const timerElement = document.getElementById('timer');
+      const countdown = setInterval(() => {
+        timeRemaining--;
+        timerElement.textContent = timeRemaining;
 
-        // 2. Thay đổi giao diện hiện Sticker trái tim chuyển sang Link 2
-        document.getElementById('timer-container').style.display = "none";
-        document.getElementById('title').textContent = "Cái cute thứ 2 nè 🎁";
-        document.getElementById('desc').textContent = "Bấm vào trái tim đi hachimiii 💕";
-        document.getElementById('sticker-box').style.display = "block";
-      }
-    }, 1000);
+        if (timeRemaining <= 0) {
+          clearInterval(countdown);
+          // Hết 5s -> Hiện Sticker Trái Tim
+          document.getElementById('timer-container').style.display = "none";
+          document.getElementById('title').textContent = "Món Quà Thứ 2 Đã Sẵn Sàng! 🎁";
+          document.getElementById('desc').textContent = "Chạm vào trái tim nhấp nháy bên dưới để mở tiếp nhé 💕";
+          document.getElementById('sticker-box').style.display = "block";
+        }
+      }, 1000);
+    }
 
     function goToLink2() {
       window.location.href = link2;
